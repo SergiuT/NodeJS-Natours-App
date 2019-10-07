@@ -1,0 +1,252 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  link(href='https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900' rel='stylesheet')
+  link(rel='stylesheet', href='css/icon-font.css')
+  link(rel='stylesheet', href='css/homepageStyle.css')
+  link(rel='shortcut icon' type='image/png' href='img/favicon.png')
+  title Natours | Exciting tours for adventurous people
+body
+  #navigation.navigation
+    input#navi-toggle.navigation__checkbox(type='checkbox')
+    label.navigation__button(for='navi-toggle')
+      span.navigation__icon &nbsp;
+    .navigation__background &nbsp;
+    nav.navigation__nav
+      ul.navigation__list
+        li.navigation__item
+          a.navigation__link(href='#section-about')
+            span 01
+            | About Natours
+        li.navigation__item
+          a.navigation__link(href='#section-features')
+            span 02
+            | Your benefits
+        li.navigation__item
+          a.navigation__link(href='#section-tours')
+            span 03
+            | Popular tours
+        li.navigation__item
+          a.navigation__link(href='#section-stories')
+            span 04
+            | Stories
+        li.navigation__item
+          a.navigation__link(href='#section-book')
+            span 05
+            | Book now
+  header.header
+    .header__logo-box
+      img.header__logo(src='img/logo-white.png' alt='Logo')
+    .header__text-box
+      h1.heading-primary
+        span.heading-primary--main OUTDOORS
+        span.heading-primary--sub is where life happens
+      a.btn.btn--white.btn--animated(href='#section-tours') discover our tours
+  main
+    section#section-about.section-about
+      .u-center-text.u-margin-bottom-big
+        h2.heading-secondary
+          | Exciting tours for adventurous people
+      .row
+        .col-1-of-2
+          h3.heading-tertiary.u-margin-bottom-small You&apos;re going to fall in love with nature
+          p.paragraph
+            | Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, doloremque perferendis labore sed, quia non aperiam dicta nulla id corporis facere blanditiis incidunt pariatur autem ipsam soluta quisquam reprehenderit tenetur!
+          h3.heading-tertiary.u-margin-bottom-small Live adventures like you never have before
+          p.paragraph
+            | Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel repudiandae quam enim reiciendis quae minima quis ex.
+          a.btn-text(href='#') Learn more &rarr;
+        .col-1-of-2
+          .composition
+            img.composition__photo.composition__photo--p1(src='img/nat-1-large.jpg' alt='Photo1')
+            img.composition__photo.composition__photo--p2(src='img/nat-13.jpg' alt='Photo2')
+            img.composition__photo.composition__photo--p3(src='img/nat-12.jpg' alt='Photo3')
+    section#section-features.section-features
+      .row
+        .col-1-of-4
+          .feature-box
+            i.feature-box__icon.icon-basic-world
+            h3.heading-tertiary.u-margin-bottom-small Explore the world
+            p.feature-box__text
+              | Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, doloremque perferendis labore sed.
+        .col-1-of-4
+          .feature-box
+            i.feature-box__icon.icon-basic-compass
+            h3.heading-tertiary.u-margin-bottom-small Meet nature
+            p.feature-box__text
+              | Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, doloremque perferendis labore sed.
+        .col-1-of-4
+          .feature-box
+            i.feature-box__icon.icon-basic-map
+            h3.heading-tertiary.u-margin-bottom-small Find your way
+            p.feature-box__text
+              | Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, doloremque perferendis labore sed.
+        .col-1-of-4
+          .feature-box
+            i.feature-box__icon.icon-basic-heart
+            h3.heading-tertiary.u-margin-bottom-small Live a healthier life
+            p.feature-box__text
+              | Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, doloremque perferendis labore sed.
+    section#section-tours.section-tours
+      .u-center-text.u-margin-bottom-big
+        h2.heading-secondary
+          | Most popular tours
+      .row
+        .col-1-of-3
+          .card
+            .card__side.card__side--front
+              .card__picture.card__picture--1
+              h4.card__heading
+                span.card__heading-span.card__heading-span--1 The Sea Explorer
+              .card__details
+                ul
+                  li 3 day tours
+                  li Up to 30 people
+                  li 2 tour guides
+                  li Sleep in cozy hotels
+                  li Difficulty: easy
+            .card__side.card__side--back.card__side--back-1
+              .card__cta
+                .card__price-box
+                  p.card__price-only Only
+                  p.card__price-value $297
+                a.btn.btn--white(href='#popup') Book now!
+        .col-1-of-3
+          .card
+            .card__side.card__side--front
+              .card__picture.card__picture--2
+              h4.card__heading
+                span.card__heading-span.card__heading-span--2 The Forest Hiker
+              .card__details
+                ul
+                  li 7 day tours
+                  li Up to 40 people
+                  li 6 tour guides
+                  li Sleep in provided tents
+                  li Difficulty: medium
+            .card__side.card__side--back.card__side--back-2
+              .card__cta
+                .card__price-box
+                  p.card__price-only Only
+                  p.card__price-value $497
+                a.btn.btn--white(href='#popup') Book now!
+        .col-1-of-3
+          .card
+            .card__side.card__side--front
+              .card__picture.card__picture--3
+              h4.card__heading
+                span.card__heading-span.card__heading-span--3 The Snow Adventurer
+              .card__details
+                ul
+                  li 5 day tours
+                  li Up to 15 people
+                  li 3 tour guides
+                  li Sleep in provided tents
+                  li Difficulty: hard
+            .card__side.card__side--back.card__side--back-3
+              .card__cta
+                .card__price-box
+                  p.card__price-only Only
+                  p.card__price-value $897
+                a.btn.btn--white(href='#popup') Book now!
+      .u-center-text.u-margin-top-huge
+        a.btn.btn--green(href='/overview') Discover all tours
+    section#section-stories.section-stories
+      .bg-video
+        video.bg-video__content(autoplay='' muted='' loop='')
+          source(src='img/video.mp4' type='video/mp4')
+          source(src='img/video.webm' type='video/webm')
+          |                         Your browser is not supported!
+      .u-center-text.u-margin-bottom-big
+        h2.heading-secondary
+          | We make people genuinely happy
+      .row
+        .story
+          figure.story__shape
+            img.story__img(src='img/nat-8.jpg' alt='Person on a tour')
+            figcaption.story__caption Mary Smith
+          .story__text
+            h3.heading-tertiary.u-margin-bottom-small I had the best week ever with my family
+            p
+              | Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, ipsum sapiente aspernatur libero repellat quis consequatur
+              | ducimus quam nisi exercitationem omnis earum qui. Aperiam, ipsum sapiente aspernatur libero
+              | repellat quis consequatur ducimus quam nisi exercitationem omnis earum qui.
+      .row
+        .story
+          figure.story__shape
+            img.story__img(src='img/nat-9.jpg' alt='Person on a tour')
+            figcaption.story__caption Jack Wilson
+          .story__text
+            h3.heading-tertiary.u-margin-bottom-small My life is completely different now
+            p
+              | Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur eligendi dignissimos explicabo placeat fugit illo necessitatibus perspiciatis rem deserunt nam itaque sed officia, nisi distinctio exercitationem adipisci? Ducimus, sapiente sunt?
+      .u-center-text.u-margin-top-huge
+        a.btn-text(href='#') Read all stories &rarr;
+    section#section-book.section-book
+      .row
+        .book
+          .book__form
+            form.form(action='#')
+              .u-margin-bottom-medium
+                h2.heading-secondary
+                  | Start booking now!
+              .form__group
+                input#name.form__input(type='text' placeholder='Full name' required='')
+                label.form__label(for='name') Full name
+              .form__group
+                input#email.form__input(type='email' placeholder='Email address' required='')
+                label.form__label(for='email') Email address
+              .form__group.u-margin-bottom-medium
+                .form__radio-group
+                  input#small.form__radio-input(type='radio' name='size')
+                  label.form__radio-label(for='small')
+                    span.form__radio-button
+                    |                                             Small tour group
+                .form__radio-group
+                  input#large.form__radio-input(type='radio' name='size')
+                  label.form__radio-label(for='large')
+                    span.form__radio-button
+                    |                                             Large tour group
+              .form__group
+                button.btn.btn--green Next step &rarr;
+  footer.footer
+    .footer__logo-box
+      picture.footer__logo
+        source(srcset='img/logo-green-small-1x.png 1x, img/logo-green-small-2x.png 2x' media='(max-width: 37.5em)')
+        img.footer__logo(srcset='img/logo-green-1x.png 1x, img/logo-green-2x.png 2x' alt='Logo')
+    .row
+      .col-1-of-2
+        .footer__navigation
+          ul.footer__list
+            li.footer__item
+              a.footer__link(href='#') Company
+            li.footer__item
+              a.footer__link(href='#') Contact us
+            li.footer__item
+              a.footer__link(href='#') Carrers
+            li.footer__item
+              a.footer__link(href='#') Privacy
+            li.footer__item
+              a.footer__link(href='#') Terms
+      .col-1-of-2
+        p.footer__copyright
+          | Built by 
+          a.footer__link(href='#') Sergiu Tont
+          |  for his final Natours project.
+          |                         Copyright &copy; by Jonas Schmedtmann. Credit to the original design author Jonas Schmedtmann.
+  #popup.popup
+    .popup__content
+      .popup__left
+        img.popup__img(src='img/nat-8.jpg' alt='Photo')
+        img.popup__img(src='img/nat-9.jpg' alt='Photo')
+      .popup__right
+        a.popup__close(href='#section-tours') &times;
+        h2.heading-secondary.u-margin-bottom-small Start booking now
+        h3.heading-tertiary.u-margin-bottom-small Important &ndash; Please read these terms before booking
+        p.popup__text
+          | Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit sint animi nobis magni dolorum quaerat ab quas dignissimos odit, ad officiis placeat. Explicabo numquam unde quidem magnam deleniti impedit eligendi.
+          | Lorem ipsum, dolor sit amet consectetur adipisicing elit. Veritatis eius, qui vitae sapiente aliquid nesciunt nemo sunt deleniti dignissimos nihil ullam. Ipsa sit dolorum earum eos tempore soluta tenetur voluptate.
+          | Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore exercitationem id voluptatibus enim nihil reprehenderit, ratione dolore, suscipit assumenda asperiores dolor? Quos voluptate explicabo quam, blanditiis sed deserunt possimus ducimus.
+          | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea atque vitae nulla sunt dolore architecto, deleniti consequuntur sapiente, tempore repellendus eligendi accusamus odio neque voluptates iure labore, voluptatem velit vel.
+        a.btn.btn--green(href='#') Book now
