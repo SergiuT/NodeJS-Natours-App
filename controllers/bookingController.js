@@ -19,9 +19,6 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
             {
                 name: `${tour.name} Tour`,
                 description: tour.summary,
-                images: [
-                    `${req.protocol}://${req.get('host')}/overview/img/tours/${tour.imageCover}`
-                ],
                 amount: tour.price * 100,
                 currency: 'usd',
                 quantity: 1
@@ -37,11 +34,11 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
 });
 
 exports.createBookingCheckout = catchAsync(async (req, res, next) => {
-    const {tour, user, price} = req.query;
-    
+    const { tour, user, price } = req.query;
+
     if (!tour && !user && !price) return next();
 
-    await Booking.create({tour, user, price});
+    await Booking.create({ tour, user, price });
 
     res.redirect(req.originalUrl.split('?')[0]);
 });

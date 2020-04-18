@@ -141,13 +141,15 @@ body {
 }
 
 .heading-primary,
-.heading-tertirary {
+.heading-tertirary,
+.heading-tertirary-admin {
   color: #fff;
   text-transform: uppercase;
   font-weight: 300;
 }
 .heading-primary span,
-.heading-tertirary span {
+.heading-tertirary span,
+.heading-tertirary-admin span {
   padding: 1rem 1.5rem;
   line-height: 1;
   -webkit-box-decoration-break: clone;
@@ -179,6 +181,16 @@ body {
   position: absolute;
   bottom: 1rem;
   right: 2rem;
+  width: 70%;
+  z-index: 10;
+}
+
+.heading-tertirary-admin {
+  font-size: 1.75rem;
+  text-align: right;
+  position: absolute;
+  bottom: 1rem;
+  right: 5rem;
   width: 70%;
   z-index: 10;
 }
@@ -241,6 +253,10 @@ body {
 .btn--small {
   padding: 1.25rem 3rem !important;
   font-size: 1.4rem !important;
+}
+
+.btn-user {
+  margin-right: 10px;
 }
 
 .btn-small,
@@ -795,6 +811,10 @@ body {
   padding: 0 8rem;
 }
 
+.user-role {
+  text-transform: capitalize;
+}
+
 .footer {
   background-color: #444;
   padding: 4rem 4rem 3rem 4rem;
@@ -1071,11 +1091,58 @@ body {
   border-bottom: 1px solid currentColor;
 }
 
+.list-container {
+  width: 100%;
+}
+
+.list-item {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 20px;
+}
+
+.list-item:nth-child(even) {
+  background-color: #f0f0f0;
+}
+
+.booking-info {
+  width: 90%;
+}
+
+.btn-delete__booking {
+  margin-right: 10px;
+  background-color: rgb(224,0,0);
+  color: white;
+}
+
+.booking-info__content {
+  display: flex;
+  flex-direction: column;
+}
+
+.booking-info__content span {
+  font-size: 14px;
+  padding: 0px 5px;
+  padding-left: 7px;
+  font-weight: bold;
+}
+
 .card-container {
   max-width: 120rem;
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  grid-gap: 7rem;
+}
+
+.card-container-mytours {
+  max-width: 160rem;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   grid-gap: 7rem;
 }
 
@@ -1174,6 +1241,26 @@ body {
   grid-row-gap: 1rem;
   margin-top: auto;
 }
+
+.card__footer-admin {
+  background-color: #f7f7f7;
+  padding: 2.5rem 1rem;
+  border-top: 1px solid #f1f1f1;
+  font-size: 1.4rem;
+  margin-top: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card__footer-admin p {
+  margin-bottom: 10px;
+}
+
+.card__footer-text-admin {
+  font-weight: bold;
+}
+
 .card__footer-value {
   font-weight: 700;
 }
@@ -1189,6 +1276,12 @@ body {
   justify-self: end;
   -ms-flex-item-align: center;
   align-self: center;
+}
+
+.btn-delete {
+  border: 1px solid #e0e0e0;
+  color: white;
+  background-color: rgba(220, 30, 60, 0.9);
 }
 
 .error {
@@ -1290,6 +1383,14 @@ body {
   width: 7.5rem;
   border-radius: 50%;
   margin-right: 2rem;
+}
+
+.form__user-photo-admin {
+  height: 14.5rem;
+  width: 14.5rem;
+  border-radius: 50%;
+  margin-top: 20px;
+  margin-left: 80px;
 }
 
 .form__upload {

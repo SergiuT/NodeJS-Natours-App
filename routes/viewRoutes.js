@@ -20,7 +20,15 @@ router.get('/overview/signup', authController.isLoggedIn, viewsController.getSig
 
 router.get('/overview/me', authController.protect, viewsController.getAccount);
 
-router.get('/my-tours', authController.protect, viewsController.getMyTours)
+router.get('/my-tours', authController.protect, viewsController.getAccount);
+
+router.get('/manage-bookings', authController.protect, viewsController.getAdminAccount);
+
+router.get('/manage-tours', authController.protect, viewsController.getAdminAccount);
+
+router.get('/manage-users', authController.protect, viewsController.getAdminAccount);
+
+router.get('/billing', authController.protect, viewsController.getAccount);
 
 router.post('/submit-user-data', authController.protect, viewsController.updateUserData);
 

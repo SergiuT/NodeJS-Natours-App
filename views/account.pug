@@ -11,47 +11,201 @@ block content
         .user-view
             nav.user-view__menu
                 ul.side-nav
-                    +navItem('#', 'Settings', 'settings', true)
+                    +navItem('/overview/me', 'Settings', 'settings', true)
                     +navItem('/my-tours', 'My bookings', 'briefcase')
-                    +navItem('#', 'My reviews', 'star')
-                    +navItem('#', 'Billing', 'credit-card')
+                    +navItem('/billing', 'Billing', 'credit-card')
                 - if (user.role === 'admin')
                     .admin-nav
                         h5.admin-nav__heading Admin
                         ul.side-nav
-                            +navItem('#', 'Manage tours', 'map')
-                            +navItem('#', 'Manage users', 'user')
-                            +navItem('#', 'Manage reviews', 'star')
-                            +navItem('#', 'Manage bookings', 'briefcase')
+                            +navItem('/manage-tours', 'Manage tours', 'map')
+                            +navItem('/manage-users', 'Manage users', 'user')
+                            +navItem('/manage-bookings', 'Manage bookings', 'briefcase')
+            if route === '/overview/me'
+                .user-view__content
+                    .user-view__form-container
+                        h2.heading-secondary.ma-bt-md Your account settings
+                        form.form.form-user-data
+                            .form__group
+                                label.form__label(for='name') Name
+                                input#name.form__input(type='text', value=`${user.name}`, required, name='name')
+                            .form__group.ma-bt-md
+                                label.form__label(for='email') Email address
+                                input#email.form__input(type='email', value=`${user.email}`, required, name='email')
+                            .form__group.form__photo-upload
+                                img.form__user-photo(src=`/img/users/${user.photo}`, alt=`${user.name}`)
+                                input.form__upload(type='file', accept='image/*', id='photo', name='photo')
+                                label(for='photo') Choose new photo
+                            .form__group.right
+                                button.btn.btn--small.btn--green Save settings
+                    .line &nbsp;
+                    .user-view__form-container
+                        h2.heading-secondary.ma-bt-md Password change
+                        form.form.form-user-password
+                            .form__group
+                                label.form__label(for='password-current') Current password
+                                input#password-current.form__input(type='password', placeholder='••••••••', required, minlength='8')
+                            .form__group
+                                label.form__label(for='password') New password
+                                input#password.form__input(type='password', placeholder='••••••••', required, minlength='8')
+                            .form__group.ma-bt-lg
+                                label.form__label(for='password-confirm') Confirm password
+                                input#password-confirm.form__input(type='password', placeholder='••••••••', required, minlength='8')
+                            .form__group.right
+                                button.btn.btn--small.btn--green.btn--save-password Save password
+            else if route === '/my-tours'
+                main.main
+                    .card-container-mytours
 
-            .user-view__content
-                .user-view__form-container
-                    h2.heading-secondary.ma-bt-md Your account settings
-                    form.form.form-user-data
-                        .form__group
-                            label.form__label(for='name') Name
-                            input#name.form__input(type='text', value=`${user.name}`, required, name='name')
-                        .form__group.ma-bt-md
-                            label.form__label(for='email') Email address
-                            input#email.form__input(type='email', value=`${user.email}`, required, name='email')
-                        .form__group.form__photo-upload
-                            img.form__user-photo(src=`/img/users/${user.photo}`, alt=`${user.name}`)
-                            input.form__upload(type='file', accept='image/*', id='photo', name='photo')
-                            label(for='photo') Choose new photo
-                        .form__group.right
-                            button.btn.btn--small.btn--green Save settings
-                .line &nbsp;
-                .user-view__form-container
-                    h2.heading-secondary.ma-bt-md Password change
-                    form.form.form-user-password
-                        .form__group
-                            label.form__label(for='password-current') Current password
-                            input#password-current.form__input(type='password', placeholder='••••••••', required, minlength='8')
-                        .form__group
-                            label.form__label(for='password') New password
-                            input#password.form__input(type='password', placeholder='••••••••', required, minlength='8')
-                        .form__group.ma-bt-lg
-                            label.form__label(for='password-confirm') Confirm password
-                            input#password-confirm.form__input(type='password', placeholder='••••••••', required, minlength='8')
-                        .form__group.right
-                            button.btn.btn--small.btn--green.btn--save-password Save password
+                        each tour in tours
+                            .card
+                                .card__header
+                                    .card__picture
+                                        .card__picture-overlay &nbsp;
+                                        img.card__picture-img(src=`/img/tours/${tour.imageCover}`, alt=`${tour.name}`)
+                                    h3.heading-tertirary
+                                        span= tour.name
+
+                                .card__details
+                                    h4.card__sub-heading= `${tour.difficulty} ${tour.duration}-day tour`
+                                    p.card__text= tour.summary
+                                    .card__data
+                                        svg.card__icon
+                                            use(xlink:href='/img/icons.svg#icon-map-pin')
+                                        span= tour.startLocation.description
+                                    .card__data
+                                        svg.card__icon
+                                            use(xlink:href='/img/icons.svg#icon-calendar')
+                                        span= tour.startDates[0].toLocaleString('en-us', {month: 'long', year: 'numeric'})
+                                    .card__data
+                                        svg.card__icon
+                                            use(xlink:href='/img/icons.svg#icon-flag')
+                                        span= `${tour.locations.length} stops`
+                                    .card__data
+                                        svg.card__icon
+                                            use(xlink:href='/img/icons.svg#icon-user')
+                                        span= `${tour.maxGroupSize} people`
+
+                                .card__footer
+                                    p
+                                        span.card__footer-value= `$${tour.price}`
+                                        | 
+                                        span.card__footer-text per person
+                                    p.card__ratings
+                                        span.card__footer-value= tour.ratingsAverage
+                                        | 
+                                        span.card__footer-text= `rating (${tour.ratingsQuantity})`
+                                    a.btn.btn--green.btn--small(href=`/overview/tour/${tour.slug}`) Details
+            else if route === '/billing'
+                .user-view__content
+                    .user-view__form-container
+                        h2.heading-secondary.ma-bt-md Your billing settings
+                        form.form.form-user-data
+                            .form__group
+                                label.form__label(for='name') Name
+                                input#name.form__input(type='text', value=`${user.name}`, required, name='name')
+                            .form__group.ma-bt-md
+                                label.form__label(for='email') Email address
+                                input#email.form__input(type='email', value=`${user.email}`, required, name='email')
+                            .form__group.ma-bt-md
+                                label.form__label(for='phone') Phone
+                                input#phone.form__input(type='tel', value=`${user.phone ? user.phone : ''}`, required, name='phone')
+                            .form__group.ma-bt-md
+                                label.form__label(for='address') Address
+                                input#address.form__input(type='text', value=`${user.address ? user.address : ''}`, name='address')
+                            .form__group.ma-bt-md
+                                label.form__label(for='postcode') Postal Code
+                                input#postcode.form__input(type='text', value=`${user.postcode ? user.postcode : ''}`, name='postcode')
+                            .form__group.right
+                                button.btn.btn--small.btn--green Save settings
+            else if user.role === 'admin'
+                if userData.route === '/manage-tours'
+                    main.main
+                        .card-container-mytours
+
+                            each tour in userData.tours
+                                .card
+                                    .card__header
+                                        .card__picture
+                                            .card__picture-overlay &nbsp;
+                                            img.card__picture-img(src=`/img/tours/${tour.imageCover}`, alt=`${tour.name}`)
+                                        h3.heading-tertirary
+                                            span= tour.name
+
+                                    .card__details
+                                        h4.card__sub-heading= `${tour.difficulty} ${tour.duration}-day tour`
+                                        p.card__text= tour.summary
+                                        .card__data
+                                            svg.card__icon
+                                                use(xlink:href='/img/icons.svg#icon-map-pin')
+                                            span= tour.startLocation.description
+                                        .card__data
+                                            svg.card__icon
+                                                use(xlink:href='/img/icons.svg#icon-calendar')
+                                            span= tour.startDates[0].toLocaleString('en-us', {month: 'long', year: 'numeric'})
+                                        .card__data
+                                            svg.card__icon
+                                                use(xlink:href='/img/icons.svg#icon-flag')
+                                            span= `${tour.locations.length} stops`
+                                        .card__data
+                                            svg.card__icon
+                                                use(xlink:href='/img/icons.svg#icon-user')
+                                            span= `${tour.maxGroupSize} people`
+
+                                    .card__footer
+                                        p
+                                            span.card__footer-value= `$${tour.price}`
+                                            | 
+                                            span.card__footer-text per person
+                                        p.card__ratings
+                                            span.card__footer-value= tour.ratingsAverage
+                                            | 
+                                            span.card__footer-text= `rating (${tour.ratingsQuantity})`
+                                        a.btn.btn--small.btn-delete() Delete
+                else if userData.route === '/manage-bookings'
+                    main.main
+                        .card-container-mytours
+
+                            each booking in userData.bookings
+                                .card
+                                    .card__header
+                                        .card__picture
+                                            .card__picture-overlay &nbsp;
+                                            img.card__picture-img(src=`/img/tours/${booking.tour.imageCover}`, alt=`${booking.tour.name}`)
+                                        h3.heading-tertirary
+                                            span= booking.tour.name
+
+                                    .card__details
+                                        h4.card__sub-heading= `${booking.tour.difficulty} ${booking.tour.duration}-day tour`
+                                        p.card__text= booking.tour.summary
+                                        .card__data
+                                            svg.card__icon
+                                                use(xlink:href='/img/icons.svg#icon-map-pin')
+                                            span= booking.tour.startLocation.description
+                                        .card__data
+                                            svg.card__icon
+                                                use(xlink:href='/img/icons.svg#icon-calendar')
+                                            span= booking.tour.startDates[0].toLocaleString('en-us', {month: 'long', year: 'numeric'})
+                                        .card__data
+                                            svg.card__icon
+                                                use(xlink:href='/img/icons.svg#icon-flag')
+                                            span= `${booking.tour.locations.length} stops`
+                                        .card__data
+                                            svg.card__icon
+                                                use(xlink:href='/img/icons.svg#icon-user')
+                                            span= `${booking.tour.maxGroupSize} people`
+
+                                    .card__footer-admin
+                                        a.btn.btn--green.btn--small(href=`/overview/tour/${booking.tour.slug}`) Details
+                                        a.btn.btn--small.btn-delete() Delete
+                else if userData.route === '/manage-users'
+                    .list-container
+                        each user in userData.users
+                            .list-item
+                                img.form__user-photo(src=`/img/users/${user.photo}`, alt=`${user.name}`)
+                                .booking-info
+                                    h1= `${user.name}`
+                                    .booking-info__content
+                                        span= user.email
+                                        span.user-role= `Role - ${user.role}`
+                                a.btn.btn--small.btn-delete__booking() Delete

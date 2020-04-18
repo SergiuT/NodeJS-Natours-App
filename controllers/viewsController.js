@@ -23,6 +23,7 @@ exports.getTour = catchAsync(async (req, res, next) => {
         path: 'reviews',
         fields: 'review rating user'
     });
+    const bookings = await Booking.find();
 
     if (!tour) {
         return next(new AppError('There is no tour with that name.', 404));
@@ -33,7 +34,8 @@ exports.getTour = catchAsync(async (req, res, next) => {
     // 3.Render the data
     res.status(200).render('tour', {
         title: `${tour.name} Tour`,
-        tour
+        tour,
+        bookings
     });
 });
 
@@ -49,15 +51,51 @@ exports.getSignUpForm = (req, res) => {
     })
 }
 
-exports.getAccount = (req, res) => {
-    res.status(200).render('account', {
-        title: 'Your account'
+exports.getAccount = catchAsync(async (req, res) => {
+    const route = req.route.path;
+    const bookings = await Booking.find({
+        user: req.user.id
     });
-};
+    const tourIDs = bookings.map(el => el.tour.id);
+    const tours = await Tour.find({ _id: { $in: tourIDs } });
+
+    res.status(200).render('account', {
+        title: 'Your account',
+        route,
+        tours
+    });
+});
+
+exports.getAdminAccount = catchAsync(async (req, res, next) => {
+    let userData = {
+        route: req.route.path,
+        bookings: await Booking.find(),
+        tours: await Tour.find(),
+        users: await User.find()
+    }
+
+    res.status(200).render('account', {
+        title: 'Your account',
+        userData
+    })
+});
+
+exports.deleteTour = catchAsync(async (req, res, next) => {
+    const document = await Tour.findByIdAndDelete(req.params.id);
+
+    if (!document) {
+        return next(new AppError('No document found with this ID', 404));
+    }
+
+    res.status(204).json({
+        status: 'success',
+        data: null
+    });
+})
 
 exports.updateUserData = catchAsync(async (req, res, next) => {
     const updatedUser = await User.findByIdAndUpdate(
-        req.user.id, 
+        req.user.id,
         {
             name: req.body.name,
             email: req.body.email
@@ -78,7 +116,8 @@ exports.getMyTours = catchAsync(async (req, res, next) => {
     // 1.Find all bookings
     const bookings = await Booking.find({
         user: req.user.id
-    })
+    });
+
     // 2.Find tours with the returned id's
     const tourIDs = bookings.map(el => el.tour.id);
     const tours = await Tour.find({ _id: { $in: tourIDs } });

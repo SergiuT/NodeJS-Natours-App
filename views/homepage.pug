@@ -16,7 +16,7 @@ body
     nav.navigation__nav
       ul.navigation__list
         li.navigation__item
-          a.navigation__link(href='#section-about')
+          a.navigation__link(href='#section-about', for='navi-toggle')
             span 01
             | About Natours
         li.navigation__item
@@ -66,7 +66,7 @@ body
       .row
         .col-1-of-4
           .feature-box
-            i.feature-box__icon.icon-basic-world
+            i.feature-box__icon.icon-basic-globe
             h3.heading-tertiary.u-margin-bottom-small Explore the world
             p.feature-box__text
               | Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, doloremque perferendis labore sed.
@@ -209,7 +209,7 @@ body
                     span.form__radio-button
                     |                                             Large tour group
               .form__group
-                button.btn.btn--green Next step &rarr;
+                a.btn.btn--green(href='/overview/login') Next step &rarr;
   footer.footer
     .footer__logo-box
       picture.footer__logo
@@ -249,4 +249,6 @@ body
           | Lorem ipsum, dolor sit amet consectetur adipisicing elit. Veritatis eius, qui vitae sapiente aliquid nesciunt nemo sunt deleniti dignissimos nihil ullam. Ipsa sit dolorum earum eos tempore soluta tenetur voluptate.
           | Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore exercitationem id voluptatibus enim nihil reprehenderit, ratione dolore, suscipit assumenda asperiores dolor? Quos voluptate explicabo quam, blanditiis sed deserunt possimus ducimus.
           | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea atque vitae nulla sunt dolore architecto, deleniti consequuntur sapiente, tempore repellendus eligendi accusamus odio neque voluptates iure labore, voluptatem velit vel.
-        a.btn.btn--green(href='#') Book now
+        a.btn.btn--green(href='/overview') Book now
+
+script(src="https://use.fontawesome.com/428479cc59.js")
