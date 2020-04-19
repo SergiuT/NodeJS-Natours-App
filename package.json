@@ -6,7 +6,7 @@
   "scripts": {
     "watch:sass": "node-sass sass/main.scss public/css/homepageStyle.css -w",
     "devserver": "live-server",
-    "start": "node server.js & npm-run-all --parallel devserver watch:sass",
+    "start": "node server.js",
     "start:prod": "SET NODE_ENV=production & nodemon server.js --parallel devserver watch:sass",
     "debug": "ndb server.js",
     "compile:sass": "node-sass sass/main.scss public/css/homepageStyle.comp.css",
